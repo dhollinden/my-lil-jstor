@@ -54,6 +54,11 @@ To install the necessary dependencies
 npm install
 ```
 
+If the above command fails because you installed python 3, and you're on a mac, try the following to use python2
+```
+npm install --python=/usr/bin/python
+```
+
 To transpile and package the static assets
 ```
 npm run build
