@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% for book in books_list %}
+<div class="float-left">
+  <img src="{% get_static_prefix %}images/{{ book.image_name }}" width="200px" />
+</div>
+<div class="columns">
+  <div><a href="{% url 'coloring_books' book.id %}" class="sma-heading">{{ book.title }}</a></div>
+  <div>{{ book.description }}</div>
+</div>
+{% endfor %}
+
+{% endblock %}

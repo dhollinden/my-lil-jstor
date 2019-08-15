@@ -15,3 +15,10 @@ def get_coloring_book(primary_key):
     }
 
     return coloring_book_dict
+
+
+def get_coloring_books_in_range(start, end):
+    coloring_books_in_range_list = []
+    for i in range(1, end + 1):
+        coloring_books_in_range_list.append(get_coloring_book(i))
+    return coloring_books_in_range_list
