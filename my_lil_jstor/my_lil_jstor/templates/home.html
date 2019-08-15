@@ -3,19 +3,19 @@
 {% load static %}
 
 {% block content %}
-    <div class="home txtc">
-        <div class="hero mbxl">
-            <div class="overlay">
-                <h1 class="white-color">Explore the My Lil' JSTOR Collection</h1>
-                <a class="button medium-heading" href="">Browse Now</a>
-            </div>
-        </div>
-        <div class="mbxl">
-            <h2>Featured Book</h2>
-            <div>
-                <img src="{% get_static_prefix %}images/{{ book.image_name }}" width="200px"/>
-            </div>
-            <a href="{% url 'coloring_books' book.id %}" class="sma-heading">{{ book.title }}</a>
+<div class="home txtc">
+    <div class="hero mbxl">
+        <div class="overlay">
+            <h1 class="white-color">Explore the My Lil' JSTOR Collection</h1>
+            <a class="button medium-heading" href="browse/">Browse Now</a>
         </div>
     </div>
+    <div class="mbxl">
+        <h2>Featured Book</h2>
+        <div>
+            <img src="{% get_static_prefix %}images/{{ book.image_name }}" width="200px" />
+        </div>
+        <a href="{% url 'coloring_books' book.id %}" class="sma-heading">{{ book.title }}</a>
+    </div>
+</div>
 {% endblock %}
