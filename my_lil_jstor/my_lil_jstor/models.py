@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 
 class ColoringBook(models.Model):
@@ -14,4 +15,10 @@ class Comment(models.Model):
     comment = models.CharField(max_length=200)
     rating = models.PositiveSmallIntegerField(blank=True)
     coloring_book_id = models.PositiveSmallIntegerField
-    add_date = models.DateTimeField('date added')
+    add_date = models.DateTimeField(auto_now_add=True)
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['name', 'comment', 'rating']

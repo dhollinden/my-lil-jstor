@@ -3,15 +3,26 @@
 {% load static %}
 
 {% block content %}
-    <div class="float-left">
-        <img src="{% get_static_prefix %}images/{{ book.image_name }}" width="400px">
-    </div>
-    <div class="columns">
-        <h1>{{ book.title }}</h1>
-        <h2>{{ book.description }}</h2>
-        <div>Published: {{ book.pub_date }}</div>
-        <hr />
-        <div class="medium-heading">Price: ${{ book.price }}</div>
-        <a class="button" href="{% url 'purchase' book.id %}">Buy Now</a>
-    </div>
+<div class="float-left">
+    <img src="{% get_static_prefix %}images/{{ book.image_name }}" width="400px">
+</div>
+<div class="columns">
+    <h1>{{ book.title }}</h1>
+    <h2>{{ book.description }}</h2>
+    <div>Published: {{ book.pub_date }}</div>
+    <hr />
+    <div class="medium-heading">Price: ${{ book.price }}</div>
+    <a class="button" href="{% url 'purchase' book.id %}">Buy Now</a>
+</div>
+<form action="/coloringbook/{{book.id}}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% for comment in comment_list %}
+<div>{{ comment.name }} commented on {{ comment.add_date }}</div>
+<div> - {{ comment.comment }}: {{ comment.rating }}</div>
+{% endfor %}
+
 {% endblock %}
