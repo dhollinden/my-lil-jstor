@@ -7,3 +7,11 @@ class ColoringBook(models.Model):
     image_name = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     price = models.DecimalField(max_digits=5, decimal_places=2, default=5.00)
+
+
+class Comment(models.Model):
+    name = models.CharField(max_length=50)
+    comment = models.CharField(max_length=200)
+    rating = models.PositiveSmallIntegerField(blank=True)
+    coloring_book_id = models.PositiveSmallIntegerField
+    add_date = models.DateTimeField('date added')
