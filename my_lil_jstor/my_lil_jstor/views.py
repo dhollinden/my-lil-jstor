@@ -8,16 +8,15 @@ from .models import CommentForm
 
 
 def coloring_books(request, book_id):
-    book = get_coloring_book(book_id)
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            form.save()
-        form = CommentForm
-        comment_list = Comment.objects.all()
-    else:
-        form = CommentForm
-        comment_list = Comment.objects.all()
+        posted_form = CommentForm(request.POST)
+        if posted_form.is_valid():
+            model_instance = posted_form.save(commit=False)
+            model_instance.coloring_book_id = book_id
+            model_instance.save()
+    book = get_coloring_book(book_id)
+    form = CommentForm
+    comment_list = Comment.objects.filter(coloring_book_id=book_id)
     context = {
         'book': book,
         'form': form,

@@ -11,11 +11,21 @@ class ColoringBook(models.Model):
 
 
 class Comment(models.Model):
+    RATING_CHOICES = [
+        ('', 'no rating'),
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5')
+    ]
+
     name = models.CharField(max_length=50)
     comment = models.CharField(max_length=200)
-    rating = models.PositiveSmallIntegerField(blank=True)
-    coloring_book_id = models.PositiveSmallIntegerField
-    add_date = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveSmallIntegerField(
+        null=True, blank=True, choices=RATING_CHOICES)
+    coloring_book_id = models.PositiveSmallIntegerField(blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
 
 
 class CommentForm(ModelForm):
