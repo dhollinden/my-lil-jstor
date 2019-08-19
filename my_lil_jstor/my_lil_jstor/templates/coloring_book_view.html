@@ -24,7 +24,7 @@
 
 {% for comment in comment_list %}
 <div>{{ comment.name }}</div>
-<div>{% if comment.rating %} {{ comment.rating }} stars: {% endif %} {{ comment.comment }}</div>
+<div>{{ comment.stars }} {{ comment.comment }}</div>
 <div>{{ comment.date_added }}</div>
 <br>
 {% endfor %}

@@ -22,3 +22,16 @@ def get_coloring_books_in_range(start, end):
     for i in range(1, end + 1):
         coloring_books_in_range_list.append(get_coloring_book(i))
     return coloring_books_in_range_list
+
+
+def get_stars(arg):
+    if arg is None:
+        return ""
+    stars = {
+        1: "☆",
+        2: "☆☆",
+        3: "☆☆☆",
+        4: "☆☆☆☆",
+        5: "☆☆☆☆☆"
+    }
+    return stars[arg]
