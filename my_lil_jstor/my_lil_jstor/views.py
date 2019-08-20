@@ -17,7 +17,8 @@ def coloring_books(request, book_id):
             model_instance.save()
     book = get_coloring_book(book_id)
     form = CommentForm
-    comment_list = Comment.objects.filter(coloring_book_id=book_id)
+    comment_list = Comment.objects.filter(
+        coloring_book_id=book_id).order_by('-date_added')
     for comment in comment_list:
         comment.stars = get_stars(comment.rating)
     context = {
