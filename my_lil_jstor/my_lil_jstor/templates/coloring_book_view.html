@@ -12,7 +12,7 @@
     <h2>{{ book.description }}</h2>
     <div>Published: {{ book.pub_date }}</div>
     <br />
-    <div><i class="icon-thumbs-o-up icon-large" aria-hidden="true"></i>
+    <div><i class="icon-thumbs-o-up icon-small" aria-hidden="true"></i>
         <a id=like-link href="#" class="small-heading">{{ link_text }}</a> <span id=like-link-msg>{{ link_msg }}</span>
     </div>
     <br />
@@ -21,49 +21,25 @@
     <a class="button" href="{% url 'purchase' book.id %}">Buy Now</a>
     <hr />
     <br />
-    <h2>Reviews</h2>
+    <h2>{{ comment_header }}</h2>
     <div>
         {% for comment in comment_list %}
-        <div>{{ comment.name }} {{ comment.stars }} </div>
+        <div>{{ comment.name }} <span class=star>{{ comment.stars }}</span></div>
         <div>{{ comment.comment }}</div>
         <div>{{ comment.date_added }}</div>
         <br>
         {% endfor %}
     </div>
-    <h2>Leave a Review</h2>
-    <div>
+    <a id=leave-comment-button href="#">{{ leave_comment_header }}</a>
+    <div id=comment-form class=visuallyhidden>
         <form action="/coloringbook/{{book.id}}" method="post">
             {% csrf_token %}
             {{ form }}
             <input type="submit" class="button" value="Submit">
         </form>
     </div>
-
+    <br />
+    <br />
 </div>
-<br>
-
-<!-- <div>[Like icon] <a id=like-link href="#">{{ link_text }}</a> <span id=like-link-msg>{{ link_msg }}</span>
-</div>
-
-<div>
-    <form action="/coloringbook/{{book.id}}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
-    </form>
-</div>
-<br>
-
-<div>
-    <div>
-        {% for comment in comment_list %}
-        <div>{{ comment.name }} {{ comment.stars }} </div>
-        <div>{{ comment.comment }}</div>
-        <div>{{ comment.date_added }}</div>
-        <br>
-        {% endfor %}
-    </div>
-</div> -->
-
 
 {% endblock %}

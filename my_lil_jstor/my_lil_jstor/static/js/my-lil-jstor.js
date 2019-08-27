@@ -11,6 +11,25 @@ $('#like-link').on('click', function (event) {
     subtractLike()
 });
 
+$('#leave-comment-button').on('click', function (event) {
+  event.preventDefault();
+  console.log("leave-comment-button clicked")
+  const linkText = $('#leave-comment-button').text()
+  console.log('leave-comment-button handler: linkText = ', linkText)
+  // determine class of comment form, and use in IF statement
+  const formClass = $('#comment-form').attr("class");
+  if (formClass === '') {
+    console.log('leave-comment-button handler: hiding form')
+    $('#leave-comment-button').text('Leave a comment')
+    $('#comment-form').attr('class', 'visuallyhidden')
+  }
+  else {
+    console.log('leave-comment-button handler: showing form')
+    $('#leave-comment-button').text('Hide comment form')
+    $('#comment-form').attr('class', '')
+  }
+});
+
 
 function addLike(elem) {
   event.preventDefault();

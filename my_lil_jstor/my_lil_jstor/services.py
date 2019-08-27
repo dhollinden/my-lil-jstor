@@ -44,7 +44,7 @@ def get_coloring_books_in_range(start, end):
 def get_stars(arg):
     if arg is None:
         return ""
-    stars = "☆" * arg
+    stars = "★" * arg
     return stars
 
 

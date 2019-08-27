@@ -17,9 +17,7 @@ from .models import CommentForm
 def coloring_books(request, book_id):
     if request.method == 'POST':
         posted_form = CommentForm(request.POST)
-        print('posted_form: ', posted_form)
         if posted_form.is_valid():
-            print('posted_form is valid, so save')
             model_instance = posted_form.save(commit=False)
             model_instance.coloring_book_id = book_id
             model_instance.save()
@@ -29,11 +27,24 @@ def coloring_books(request, book_id):
         coloring_book_id=book_id).order_by('-date_added')
     for comment in comment_list:
         comment.stars = get_stars(comment.rating)
+    num_comments = len(comment_list)
+    if num_comments == 0:
+        comment_header = ''
+        leave_comment_header = 'Be the first to comment!'
+    elif num_comments == 1:
+        comment_header = '1 Customer Comment'
+        leave_comment_header = 'Leave a comment'
+    else:
+        comment_header = str(num_comments) + ' Customer Comments'
+        leave_comment_header = 'Leave a comment'
+
     markup = get_likes_markup(request, book['likes'], book_id)
     context = {
         'book': book,
         'form': form,
         'comment_list': comment_list,
+        'comment_header': comment_header,
+        'leave_comment_header': leave_comment_header,
         'link_text': markup['link_text'],
         'link_msg': markup['link_msg']
     }
@@ -74,7 +85,6 @@ def home(request):
     context = {
         'book': book
     }
-
     return render(request, 'home.html', context)
 
 
