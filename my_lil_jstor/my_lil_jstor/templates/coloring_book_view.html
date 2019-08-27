@@ -6,6 +6,7 @@
 <div class="float-left">
     <img src="{% get_static_prefix %}images/{{ book.image_name }}" width="400px">
 </div>
+
 <div class="columns">
     <h1>{{ book.title }}</h1>
     <h2>{{ book.description }}</h2>
@@ -15,18 +16,29 @@
     <a class="button" href="{% url 'purchase' book.id %}">Buy Now</a>
 </div>
 <br>
-<form action="/coloringbook/{{book.id}}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+
+<div>[Like icon] <a id=like-link href="#">{{ link_text }}</a> <span id=like-link-msg>{{ link_msg }}</span>
+</div>
+
+<div>
+    <form action="/coloringbook/{{book.id}}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
 <br>
 
-{% for comment in comment_list %}
-<div>{{ comment.name }} {{ comment.stars }} </div>
-<div>{{ comment.comment }}</div>
-<div>{{ comment.date_added }}</div>
-<br>
-{% endfor %}
+<div>
+    <div>
+        {% for comment in comment_list %}
+        <div>{{ comment.name }} {{ comment.stars }} </div>
+        <div>{{ comment.comment }}</div>
+        <div>{{ comment.date_added }}</div>
+        <br>
+        {% endfor %}
+    </div>
+</div>
+
 
 {% endblock %}
