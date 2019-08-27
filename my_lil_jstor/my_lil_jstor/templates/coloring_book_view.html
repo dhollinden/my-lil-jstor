@@ -21,14 +21,6 @@
     <a class="button" href="{% url 'purchase' book.id %}">Buy Now</a>
     <hr />
     <br />
-    <h2>Leave a Review</h2>
-    <div>
-        <form action="/coloringbook/{{book.id}}" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" class="button" value="Submit">
-        </form>
-    </div>
     <h2>Reviews</h2>
     <div>
         {% for comment in comment_list %}
@@ -37,6 +29,14 @@
         <div>{{ comment.date_added }}</div>
         <br>
         {% endfor %}
+    </div>
+    <h2>Leave a Review</h2>
+    <div>
+        <form action="/coloringbook/{{book.id}}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="button" value="Submit">
+        </form>
     </div>
 
 </div>
