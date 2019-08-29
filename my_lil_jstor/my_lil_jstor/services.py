@@ -1,6 +1,7 @@
 from django.core.serializers import serialize
-from decimal import Decimal
+from decimal import Decimal, ROUND_DOWN
 from .models import ColoringBook
+from .models import Comment
 
 
 def get_coloring_book(primary_key):
@@ -22,8 +23,6 @@ def add_like(book_id):
     print('add_like: called')
     coloring_book = ColoringBook.objects.get(pk=book_id)
     coloring_book.likes += 1
-    if coloring_book.price >= 2.75:
-        coloring_book.price -= Decimal(0.25)
     coloring_book.save()
     return coloring_book.likes
 
@@ -34,6 +33,20 @@ def subtract_like(book_id):
     coloring_book.likes -= 1
     coloring_book.save()
     return coloring_book.likes
+
+
+def get_discounted_price(book_id):
+    coloring_book_dict = get_coloring_book(book_id)
+    num_likes = coloring_book_dict['likes']
+    price = coloring_book_dict['price']
+    comments_list = Comment.objects.filter(coloring_book_id=book_id)
+    num_comments = len(comments_list)
+    discounted_price = price - Decimal(num_likes * .25 + num_comments * .5)
+    if discounted_price < 2.50:
+        discounted_price = Decimal(str(2.50)).quantize(
+            Decimal('.01'), rounding=ROUND_DOWN)
+    print('discounted_price: discounted_price = ', discounted_price)
+    return discounted_price
 
 
 def get_coloring_books_in_range(start, end):

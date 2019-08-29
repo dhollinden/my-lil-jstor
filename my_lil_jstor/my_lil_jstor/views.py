@@ -9,9 +9,13 @@ from .services import get_stars
 from .services import add_like
 from .services import subtract_like
 from .services import get_likes_markup
+from .services import get_discounted_price
+
 
 from .models import Comment
 from .models import CommentForm
+
+from decimal import Decimal
 
 
 def coloring_books(request, book_id):
@@ -48,8 +52,12 @@ def coloring_books(request, book_id):
         leave_comment_header = 'Leave a comment'
 
     markup = get_likes_markup(request, book['likes'], book_id)
+    discounted_price = get_discounted_price(book_id)
+    if discounted_price < 2.50:
+        discounted_price = round(Decimal(2.50), 2)
     context = {
         'book': book,
+        'discounted_price': discounted_price,
         'form': form,
         'comment_ave': comment_ave,
         'comment_list': comment_list,
@@ -66,8 +74,10 @@ def coloring_books(request, book_id):
 
 def like(request, book_id):
     num_likes = add_like(book_id)
+    discounted_price = get_discounted_price(book_id)
     response = JsonResponse({
-        'num_likes': num_likes
+        'num_likes': num_likes,
+        'discounted_price': discounted_price
     })
     response.set_cookie(key='likes_coloring_book_'+book_id, value='1')
     return response
@@ -75,8 +85,10 @@ def like(request, book_id):
 
 def unlike(request, book_id):
     num_likes = subtract_like(book_id)
+    discounted_price = get_discounted_price(book_id)
     response = JsonResponse({
-        'num_likes': num_likes
+        'num_likes': num_likes,
+        'discounted_price': discounted_price
     })
     response.delete_cookie('likes_coloring_book_' + book_id)
     return response

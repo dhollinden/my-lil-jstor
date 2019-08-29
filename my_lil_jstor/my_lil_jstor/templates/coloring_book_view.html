@@ -21,7 +21,7 @@
     </div>
     <br />
     <!-- <hr /> -->
-    <div class="medium-heading">Price: ${{ book.price }}</div>
+    <div class="medium-heading">Price: $<span id=price>{{ discounted_price }}</span></div>
     <a class="button" href="{% url 'purchase' book.id %}">Buy Now</a>
     <hr />
     <br />

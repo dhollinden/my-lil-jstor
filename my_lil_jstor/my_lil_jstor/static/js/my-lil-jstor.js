@@ -45,12 +45,14 @@ function addLike(elem) {
     success: function (result) {
       console.log('ajax call was successful')
       console.log('ajax function: num_likes = ', result.num_likes)
+      console.log('ajax function: discounted_price = ', result.discounted_price)
       const book_id = window.location.pathname.split("/")[2]
       console.log('book_id = ', book_id)
       const markup = getLikesMarkup(result.num_likes, book_id)
 
       $('#like-link').text(markup.linkText)
       $('#like-link-msg').text(markup.linkMsg)
+      $('#price').text(result.discounted_price)
     },
     error: function () {
       console.log('ajax call error')
@@ -71,12 +73,14 @@ function subtractLike(elem) {
     success: function (result) {
       console.log('ajax call was successful')
       console.log('ajax function: num_likes = ', result.num_likes)
+      console.log('ajax function: discounted_price = ', result.discounted_price)
       const book_id = window.location.pathname.split("/")[2]
       console.log('book_id = ', book_id)
       const markup = getLikesMarkup(result.num_likes, book_id)
 
       $('#like-link').text(markup.linkText)
       $('#like-link-msg').text(markup.linkMsg)
+      $('#price').text(result.discounted_price)
     },
     error: function () {
       console.log('ajax call error')
