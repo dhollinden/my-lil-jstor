@@ -1,5 +1,5 @@
 from django.core.serializers import serialize
-
+from decimal import Decimal
 from .models import ColoringBook
 
 
@@ -22,6 +22,8 @@ def add_like(book_id):
     print('add_like: called')
     coloring_book = ColoringBook.objects.get(pk=book_id)
     coloring_book.likes += 1
+    if coloring_book.price >= 2.75:
+        coloring_book.price -= Decimal(0.25)
     coloring_book.save()
     return coloring_book.likes
 
