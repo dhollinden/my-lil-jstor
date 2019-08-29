@@ -25,8 +25,17 @@ def coloring_books(request, book_id):
     form = CommentForm
     comment_list = Comment.objects.filter(
         coloring_book_id=book_id).order_by('-date_added')
+    total = 0
+    count = 0
     for comment in comment_list:
         comment.stars = get_stars(comment.rating)
+        if comment.rating:
+            count += 1
+            total += int(comment.rating)
+    comment_ave = "Not yet rated"
+    if count > 0:
+        comment_ave = str(total / count)
+    print('comment_ave = ', comment_ave)
     num_comments = len(comment_list)
     if num_comments == 0:
         comment_header = ''
@@ -42,6 +51,7 @@ def coloring_books(request, book_id):
     context = {
         'book': book,
         'form': form,
+        'comment_ave': comment_ave,
         'comment_list': comment_list,
         'comment_header': comment_header,
         'leave_comment_header': leave_comment_header,
