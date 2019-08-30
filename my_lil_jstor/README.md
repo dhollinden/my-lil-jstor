@@ -1,3 +1,90 @@
+# Summary of Time Spent (41 hours total)
+
+Two things:
+* I started on this exercise before I submitted my application for the position, so I'm being extra meticulous and straightforward about how much time I spent. 
+* This is my first time working with Django and I have not yet studied Python, so the time I spent on the exercise includes plenty of study time.
+
+### Setup and Troubleshooting (5 hours)
+* Create a virtualenv on Python 3
+* Install Django
+* Run migration :warning:
+  * Error: Symbol not found: _sqlite3_enable_load_extension
+  * Solution
+    * brew update
+    * brew upgrade python3
+    * update Xcode
+    * download Xcode Command Line Tools manually
+    * brew upgrade python3
+* Run migration :warning:
+  * Error: 'django.contrib.sessions.middleware.SessionMiddleware' must be in MIDDLEWARE in order to use the admin application
+  * Solution: /settings.py: change MIDDLEWARE_CLASSES to MIDDLEWARE
+* Run migration :heavy_check_mark:
+* Run server :warning:
+  * Error: AttributeError: module 'django.contrib.auth.middleware' has no attribute 'SessionAuthenticationMiddleware'
+  * Solution: settings.py: delete line 46: 'django.contrib.auth.middleware.SessionAuthenticationMiddleware'
+* Run server :heavy_check_mark:
+
+### Task 1: Something is Broken! (2 hours)
+* Start learning how Django works :books:
+* Error: NoReverseMatch at /coloringbook/3
+* Solution: views.py: add book = get_coloring_book(book_id) to context of coloring_book view
+
+### Task 2: Browse (3 hours)
+* Learn about Python lists :books:
+* urls.py: add browse/ url
+* services.py: add service: get_coloring_books_in_range(start, end) returns list with all books
+* views.py: add browse view: generate books_list by calling get_coloring_books_in_range(1, 5), then pass it into template context
+* templates: add browse.html template: start with coloring_book_view.html, use {% for book in books_list %} to display all books in books_list
+* Error: Invalid block tag on line 9: 'endfor', expected 'endblock' :warning" :confounded:
+  * Solution: disable "Prettier - Code Formatter" extenion that was breaking tags :heavy_check_mark:
+
+### Task 3: User Comments (12 hours)
+* Learn about database models, forms, and modelforms :books:
+* Create database model for comments
+* Create modelform for form fields
+* Handle form POST inside coloring_book view
+* Learn about running migrations :books:
+* Run migration
+* Learn how to view sqlite tables and data, etc. :books:
+* Rating must be optional :books:
+* Learn about Django conditionals :books:
+* Display comments on coloring_book page, and rating if one exists
+* Display ratings as stars instead of numbers
+
+### Task 4: Likes (13 hours)
+* Learn about AJAX and JQuery :books:
+* Add likes field to coloring book model, run migrations
+* Add Like link to coloring book template
+* Add eventListener to Like link
+* Add AJAX function to make GET request to /like url with book_id
+* Add like and unlike urls and views
+* Create add_like and subtract_like services
+* Number of likes is returned to AJAX function
+* Cookie is set or deleted
+* Create new function for determining text to display (e.g., Like/Unlike, X others like this)
+* Update page with text 
+
+
+### Task 5: Discounts (2.5 hours)
+* Learn about int, float, rounding and Decimal :books:
+* Create new service: get_discounted_price(book_id)
+* Display discounted price in template
+* Call get_discounted_price() when Like/Unlike is clicked, and update displayed price
+
+
+### Nice-to-haves (3.5 hours)
+* Play with layout, make refinements
+* Toggle visibility of comment form via 'Leave a comment' link
+* Display rating with solid gold stars
+* Calculate and display average rating with stars
+* Add browse link to coloring book pages for ease of navigation
+* Display rating with a combo of gold and gray stars so that there are 5 stars total
+
+
+
+
+
+
 # Technical Exercise Goals
 
 This exercise is not meant to test how fast you get to solutions, but to see what your thought process
