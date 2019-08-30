@@ -12,9 +12,11 @@
     <h2>{{ book.description }}</h2>
     <div>Published: {{ book.pub_date }}</div>
     <br />
-    <div>Average rating: {{ comment_ave }}
-        <span class=goldstar>{{ comment_ave_stars }}</span>
-        <span class=graystar>{{ comment_ave_non_stars }}</span>
+    <div>
+        Average Rating:
+        <span class="medium-heading goldstar">{{ comment_average_stars }}</span>
+        <span class="medium-heading graystar" class=graystar>{{ comment_average_stars_alt }}</span>
+        ({{ comment_average_text }})
     </div>
     <br />
     <div>

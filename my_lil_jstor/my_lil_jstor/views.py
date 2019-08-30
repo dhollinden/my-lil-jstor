@@ -41,15 +41,14 @@ def coloring_books(request, book_id):
         else:
             comment.non_stars = ""
     if count > 0:
-        comment_ave = round(total / count, 1)
-        comment_ave_int = int(round(total / count))
-        comment_ave_stars = get_stars(comment_ave_int)
-        comment_ave_non_stars = get_stars(int(5) - comment_ave_int)
+        comment_average = round(total / count, 1)
+        comment_average_text = str(comment_average) + ' out of 5 stars'
+        comment_average_stars = get_stars(int(comment_average))
+        comment_average_stars_alt = get_stars(int(5) - int(comment_average))
     else:
-        comment_ave = "Not yet rated"
-        comment_ave_stars = ""
-        comment_ave_non_stars = ""
-    print('comment_ave = ', comment_ave)
+        comment_average_text = "Not yet rated"
+        comment_average_stars = ""
+        comment_average_stars_alt = ""
     num_comments = len(comment_list)
     if num_comments == 0:
         comment_header = ''
@@ -69,9 +68,9 @@ def coloring_books(request, book_id):
         'book': book,
         'discounted_price': discounted_price,
         'form': form,
-        'comment_ave': comment_ave,
-        'comment_ave_stars': comment_ave_stars,
-        'comment_ave_non_stars': comment_ave_non_stars,
+        'comment_average_text': comment_average_text,
+        'comment_average_stars': comment_average_stars,
+        'comment_average_stars_alt': comment_average_stars_alt,
         'comment_list': comment_list,
         'comment_header': comment_header,
         'leave_comment_header': leave_comment_header,
