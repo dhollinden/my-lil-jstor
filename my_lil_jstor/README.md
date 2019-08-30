@@ -36,8 +36,8 @@ Two things:
 * services.py: add service: get_coloring_books_in_range(start, end) returns list with all books
 * views.py: add browse view: generate books_list by calling get_coloring_books_in_range(1, 5), then pass it into template context
 * templates: add browse.html template: start with coloring_book_view.html, use {% for book in books_list %} to display all books in books_list
-* Error: Invalid block tag on line 9: 'endfor', expected 'endblock' :warning" :confounded:
-  * Solution: disable "Prettier - Code Formatter" extenion that was breaking tags :heavy_check_mark:
+* Error: Invalid block tag on line 9: 'endfor', expected 'endblock' :warning:
+  * Solution: disable "Prettier - Code Formatter" extenion that was breaking tags :heavy_check_mark: :confounded:
 
 ### Task 3: User Comments (12 hours)
 * Learn about database models, forms, and modelforms :books:
