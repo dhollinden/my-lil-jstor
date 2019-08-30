@@ -2,7 +2,7 @@
 ### Summary of Time Spent (41 hours total)
 
 Two things:
-* I started on this exercise before I submitted my application for the position, so I'm being extra meticulous and straightforward about how much time I spent. 
+* I started on this exercise before I submitted my application for the position, which is why I'm being extra meticulous and straightforward about how much time I spent. 
 * This is my first time working with Django and I have not yet studied Python, and the times I list below include study time.
 
 ### Setup and Troubleshooting (5 hours)
