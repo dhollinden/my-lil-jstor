@@ -15,7 +15,7 @@ from .services import get_discounted_price
 from .models import Comment
 from .models import CommentForm
 
-from decimal import Decimal
+from decimal import Decimal, ROUND_UP
 
 
 def coloring_books(request, book_id):
@@ -33,12 +33,22 @@ def coloring_books(request, book_id):
     count = 0
     for comment in comment_list:
         comment.stars = get_stars(comment.rating)
+        print('coloring_book view: comment.rating = ', comment.rating)
         if comment.rating:
             count += 1
             total += int(comment.rating)
-    comment_ave = "Not yet rated"
+            comment.non_stars = get_stars(5 - comment.rating)
+        else:
+            comment.non_stars = ""
     if count > 0:
-        comment_ave = str(total / count)
+        comment_ave = round(total / count, 1)
+        comment_ave_int = int(round(total / count))
+        comment_ave_stars = get_stars(comment_ave_int)
+        comment_ave_non_stars = get_stars(int(5) - comment_ave_int)
+    else:
+        comment_ave = "Not yet rated"
+        comment_ave_stars = ""
+        comment_ave_non_stars = ""
     print('comment_ave = ', comment_ave)
     num_comments = len(comment_list)
     if num_comments == 0:
@@ -60,6 +70,8 @@ def coloring_books(request, book_id):
         'discounted_price': discounted_price,
         'form': form,
         'comment_ave': comment_ave,
+        'comment_ave_stars': comment_ave_stars,
+        'comment_ave_non_stars': comment_ave_non_stars,
         'comment_list': comment_list,
         'comment_header': comment_header,
         'leave_comment_header': leave_comment_header,
