@@ -42,9 +42,10 @@ def coloring_books(request, book_id):
             comment.non_stars = ""
     if count > 0:
         comment_average = round(total / count, 1)
+        comment_average_int = int((1.0*total/count) + 0.5)
         comment_average_text = str(comment_average) + ' out of 5 stars'
-        comment_average_stars = get_stars(int(comment_average))
-        comment_average_stars_alt = get_stars(int(5) - int(comment_average))
+        comment_average_stars = get_stars(comment_average_int)
+        comment_average_stars_alt = get_stars(int(5) - comment_average_int)
     else:
         comment_average_text = "Not yet rated"
         comment_average_stars = ""
