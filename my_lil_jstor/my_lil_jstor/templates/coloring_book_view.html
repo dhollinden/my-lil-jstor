@@ -14,8 +14,8 @@
     <br />
     <div>
         Average Rating:
-        <span class="medium-heading goldstar">{{ comment_average_stars }}</span>
-        <span class="medium-heading graystar" class=graystar>{{ comment_average_stars_alt }}</span>
+        <span class="medium-heading goldstar">{{ comment_average_stars }}</span><span class="medium-heading graystar"
+            class=graystar>{{ comment_average_stars_alt }}</span>
         ({{ comment_average_text }})
     </div>
     <br />
@@ -35,8 +35,7 @@
     <div>
         {% for comment in comment_list %}
         <div>{{ comment.name }}
-            <span class=goldstar>{{ comment.stars }}</span>
-            <span class=graystar>{{ comment.non_stars }}</span>
+            <span class=goldstar>{{ comment.stars }}</span><span class=graystar>{{ comment.non_stars }}</span>
         </div>
         <div>{{ comment.comment }}</div>
         <div>{{ comment.date_added }}</div>

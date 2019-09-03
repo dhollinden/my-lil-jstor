@@ -2,22 +2,25 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static "dist/css/my-lil-jstor.css" %}" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>{% block title %}My Lil JSTOR{% endblock %}</title>
 </head>
+
 <body>
 
-{% include "nav.html" %}
+    {% include "nav.html" %}
 
-<div class="row content">
-    {% block content %}{% endblock %}
-</div>
+    <div class="row content">
+        {% block content %}{% endblock %}
+    </div>
 
-{% include "footer.html" %}
+    {% include "footer.html" %}
 
-<script type="text/javascript" src="{% static "dist/js/my-lil-jstor.js" %}"></script>
+    <script type="text/javascript" src="{% static "dist/js/my-lil-jstor.js" %}"></script>
 </body>
+
 </html>
