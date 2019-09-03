@@ -20,7 +20,6 @@ def get_coloring_book(primary_key):
 
 
 def add_like(book_id):
-    print('add_like: called')
     coloring_book = ColoringBook.objects.get(pk=book_id)
     coloring_book.likes += 1
     coloring_book.save()
@@ -28,7 +27,6 @@ def add_like(book_id):
 
 
 def subtract_like(book_id):
-    print('subtract_like: called')
     coloring_book = ColoringBook.objects.get(pk=book_id)
     coloring_book.likes -= 1
     coloring_book.save()
@@ -38,20 +36,19 @@ def subtract_like(book_id):
 def get_discounted_price(book_id):
     coloring_book_dict = get_coloring_book(book_id)
     num_likes = coloring_book_dict['likes']
+    num_comments = len(Comment.objects.filter(coloring_book_id=book_id))
     price = coloring_book_dict['price']
-    comments_list = Comment.objects.filter(coloring_book_id=book_id)
-    num_comments = len(comments_list)
+    minimum_price = 2.50
     discounted_price = price - Decimal(num_likes * .25 + num_comments * .5)
-    if discounted_price < 2.50:
-        discounted_price = Decimal(str(2.50)).quantize(
+    if discounted_price < minimum_price:
+        discounted_price = Decimal(str(minimum_price)).quantize(
             Decimal('.01'), rounding=ROUND_DOWN)
-    print('discounted_price: discounted_price = ', discounted_price)
     return discounted_price
 
 
 def get_coloring_books_in_range(start, end):
     coloring_books_in_range_list = []
-    for i in range(1, end + 1):
+    for i in range(start, end + 1):
         coloring_books_in_range_list.append(get_coloring_book(i))
     return coloring_books_in_range_list
 
@@ -59,7 +56,8 @@ def get_coloring_books_in_range(start, end):
 def get_stars(arg):
     if arg is None:
         return ""
-    stars = "★" * arg
+    star = "★"
+    stars = star * arg
     return stars
 
 
@@ -89,12 +87,10 @@ def get_likes_markup(request, num_likes, book_id):
         'link_text': link_text,
         'link_msg': link_msg
     }
-    print('getLikesMarkup: markup = ', markup)
     return markup
 
 
 def get_cookie(request, cname):
-    print('get_cookie: cname = ', cname)
     # print('get_cookie: request.COOKIES.get(cname) = ', request.COOKIES.get(cname))
     if cname in request.COOKIES:
         return 1
