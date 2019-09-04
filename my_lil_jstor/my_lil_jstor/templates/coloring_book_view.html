@@ -14,8 +14,9 @@
     <br />
     <div>
         Average Rating:
-        <span class="medium-heading goldstar">{{ comment_average_stars }}</span><span class="medium-heading graystar"
-            class=graystar>{{ comment_average_stars_alt }}</span>
+        <!-- keep spans together to avoid white space -->
+        <span class="medium-heading goldstar">{{ comment_average_stars }}</span><span
+            class="medium-heading graystar">{{ comment_average_stars_alt }}</span>
         ({{ comment_average_text }})
     </div>
     <br />
@@ -25,16 +26,21 @@
         <span id=like-link-msg>{{ link_msg }}</span>
     </div>
     <br />
-    <!-- <hr /> -->
-    <div class="medium-heading">Price: $<span id=price>{{ discounted_price }}</span></div>
-    <a class="button" href="{% url 'purchase' book.id %}">Buy Now</a>
-    &nbsp;&nbsp;&nbsp;...or <a href="/browse/">browse other books</a>
+    <div class="medium-heading">
+        Price: $<span id=price>{{ discounted_price }}</span>
+    </div>
+    <div>
+        <a class="button" href="{% url 'purchase' book.id %}">Buy Now</a>
+        &nbsp;&nbsp;&nbsp;...or
+        <a href="/browse/">browse other books</a>
+    </div>
     <hr />
     <br />
     <h2>{{ comment_header }}</h2>
     <div>
         {% for comment in comment_list %}
         <div>{{ comment.name }}
+            <!-- keep spans together to avoid white space -->
             <span class=goldstar>{{ comment.stars }}</span><span class=graystar>{{ comment.non_stars }}</span>
         </div>
         <div>{{ comment.comment }}</div>
@@ -50,6 +56,8 @@
             <input type="submit" class="button" value="Submit">
         </form>
     </div>
+    <br />
+    <br />
     <br />
     <br />
 </div>
