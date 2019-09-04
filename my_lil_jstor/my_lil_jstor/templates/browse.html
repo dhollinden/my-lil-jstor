@@ -7,11 +7,11 @@
 {% for book in books_list %}
 <div class="float-left">
   <a href="{% url 'coloring_books' book.id %}" class="sma-heading">
-    <img src="{% get_static_prefix %}images/{{ book.image_name }}" width="200px" />
+    <img src="{% get_static_prefix %}images/{{ book.image_name }}" width="400px" />
   </a>
 </div>
-<div class="columns">
-  <div><a href="{% url 'coloring_books' book.id %}" class="sma-heading">{{ book.title }}</a></div>
+<div class="columns" style="margin-top: 50px">
+  <h3><a href="{% url 'coloring_books' book.id %}" class="sma-heading">{{ book.title }}</a></h3>
   <div>{{ book.description }}</div>
 </div>
 {% endfor %}
