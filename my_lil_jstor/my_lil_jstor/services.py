@@ -61,6 +61,51 @@ def get_stars(arg):
     return stars
 
 
+def get_comment_markup(book_id):
+    comment_list = Comment.objects.filter(
+        coloring_book_id=book_id).order_by('-date_added')
+    total = 0
+    count = 0
+    for comment in comment_list:
+        comment.stars = get_stars(comment.rating)
+        comment.non_stars = ""
+        if comment.rating:
+            count += 1
+            total += int(comment.rating)
+            comment.non_stars = get_stars(5 - comment.rating)
+    if count > 0:
+        comment_average = round(total / count, 1)
+        comment_average_int = int((1.0*total/count) + 0.5)
+        comment_average_text = str(comment_average) + ' out of 5 stars'
+        comment_average_stars = get_stars(comment_average_int)
+        comment_average_stars_alt = get_stars(int(5) - comment_average_int)
+    else:
+        comment_average_text = "Not yet rated"
+        comment_average_stars = ""
+        comment_average_stars_alt = ""
+    num_comments = len(comment_list)
+    if num_comments == 0:
+        comment_header = ''
+        leave_comment_header = 'Be the first to comment!'
+    elif num_comments == 1:
+        comment_header = '1 Customer Comment'
+        leave_comment_header = 'Leave a comment'
+    else:
+        comment_header = str(num_comments) + ' Customer Comments'
+        leave_comment_header = 'Leave a comment'
+
+    comment_markup = {
+        'comment_list': comment_list,
+        'comment_average_text': comment_average_text,
+        'comment_average_stars': comment_average_stars,
+        'comment_average_stars_alt': comment_average_stars_alt,
+        'comment_header': comment_header,
+        'leave_comment_header': leave_comment_header
+    }
+
+    return comment_markup
+
+
 def get_likes_markup(request, num_likes, book_id):
     cookie_name = 'likes_coloring_book_' + book_id
     cookie_val = get_cookie(request, cookie_name)
@@ -83,11 +128,12 @@ def get_likes_markup(request, num_likes, book_id):
         else:
             link_msg = str(num_likes) + ' people like this'
 
-    markup = {
+    likes_markup = {
         'link_text': link_text,
         'link_msg': link_msg
     }
-    return markup
+
+    return likes_markup
 
 
 def get_cookie(request, cname):

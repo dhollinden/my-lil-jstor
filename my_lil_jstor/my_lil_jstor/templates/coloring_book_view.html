@@ -15,15 +15,15 @@
     <div>
         Average Rating:
         <!-- keep spans together to avoid white space -->
-        <span class="medium-heading goldstar">{{ comment_average_stars }}</span><span
-            class="medium-heading graystar">{{ comment_average_stars_alt }}</span>
-        ({{ comment_average_text }})
+        <span class="medium-heading goldstar">{{ comment_markup.comment_average_stars }}</span><span
+            class="medium-heading graystar">{{ comment_markup.comment_average_stars_alt }}</span>
+        ({{ comment_markup.comment_average_text }})
     </div>
     <br />
     <div>
         <i class="icon-thumbs-o-up icon-small" aria-hidden="true"></i>
-        <a id=like-link href="#">{{ link_text }}</a>
-        <span id=like-link-msg>{{ link_msg }}</span>
+        <a id=like-link href="#">{{ likes_markup.link_text }}</a>
+        <span id=like-link-msg>{{ likes_markup.link_msg }}</span>
     </div>
     <br />
     <div class="medium-heading">
@@ -36,9 +36,9 @@
     </div>
     <hr />
     <br />
-    <h2>{{ comment_header }}</h2>
+    <h2>{{ comment_markup.comment_header }}</h2>
     <div>
-        {% for comment in comment_list %}
+        {% for comment in comment_markup.comment_list %}
         <div>{{ comment.name }}
             <!-- keep spans together to avoid white space -->
             <span class=goldstar>{{ comment.stars }}</span><span class=graystar>{{ comment.non_stars }}</span>
@@ -48,7 +48,7 @@
         <br>
         {% endfor %}
     </div>
-    <a id=leave-comment-button href="#">{{ leave_comment_header }}</a>
+    <a id=leave-comment-button href="#">{{ comment_markup.leave_comment_header }}</a>
     <div id=comment-form class=visuallyhidden>
         <form action="/coloringbook/{{book.id}}" method="post">
             {% csrf_token %}
