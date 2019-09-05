@@ -34,25 +34,17 @@ def coloring_books(request, book_id):
     return render(request, 'coloring_book_view.html', context)
 
 
-def like(request, book_id):
-    num_likes = add_like(book_id)
+def likes_handler(request, book_id, action):
+    num_likes = update_likes(book_id, action)
     discounted_price = get_discounted_price(book_id)
     response = JsonResponse({
         'num_likes': num_likes,
         'discounted_price': discounted_price
     })
-    response.set_cookie(key='likes_coloring_book_'+book_id, value='1')
-    return response
-
-
-def unlike(request, book_id):
-    num_likes = subtract_like(book_id)
-    discounted_price = get_discounted_price(book_id)
-    response = JsonResponse({
-        'num_likes': num_likes,
-        'discounted_price': discounted_price
-    })
-    response.delete_cookie('likes_coloring_book_' + book_id)
+    if action == 'like':
+        response.set_cookie(key='likes_coloring_book_'+book_id, value='1')
+    else:
+        response.delete_cookie('likes_coloring_book_' + book_id)
     return response
 
 

@@ -19,14 +19,12 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^coloringbook/(?P<book_id>[0-9]+)/like', views.like, name='like'),
-    url(r'^coloringbook/(?P<book_id>[0-9]+)/unlike',
-        views.unlike, name='unlike'),
+    url(r'^coloringbook/(?P<book_id>[0-9]+)/(?P<action>(like|unlike))',
+        views.likes_handler, name='likes_handler'),
     url(r'^coloringbook/(?P<book_id>[0-9]+)',
         views.coloring_books, name='coloring_books'),
     url(r'^purchase/(?P<book_id>[0-9]+)', views.purchase, name='purchase'),
     url(r'^browse/', views.browse, name='browse'),
-    url(r'^like/(?P<book_id>[0-9]+)', views.like, name='like'),
     url(r'^admin/', admin.site.urls),
     url(r'^', views.home, name='home'),
 ]

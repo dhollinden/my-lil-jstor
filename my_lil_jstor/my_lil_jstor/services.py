@@ -1,7 +1,6 @@
 from django.core.serializers import serialize
 from decimal import Decimal, ROUND_DOWN
-from .models import ColoringBook
-from .models import Comment
+from .models import ColoringBook, Comment
 
 
 def get_coloring_book(primary_key):
@@ -19,16 +18,12 @@ def get_coloring_book(primary_key):
     return coloring_book_dict
 
 
-def add_like(book_id):
+def update_likes(book_id, action):
     coloring_book = ColoringBook.objects.get(pk=book_id)
-    coloring_book.likes += 1
-    coloring_book.save()
-    return coloring_book.likes
-
-
-def subtract_like(book_id):
-    coloring_book = ColoringBook.objects.get(pk=book_id)
-    coloring_book.likes -= 1
+    if action == 'like':
+        coloring_book.likes += 1
+    else:
+        coloring_book.likes -= 1
     coloring_book.save()
     return coloring_book.likes
 
