@@ -1,15 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 
-from .services import get_coloring_book
-from .services import get_coloring_books_in_range
-from .services import get_stars
-from .services import add_like
-from .services import subtract_like
-from .services import get_comment_markup
-from .services import get_likes_markup
-from .services import get_discounted_price
-
+from .services import *
 
 from .models import Comment
 from .models import CommentForm
