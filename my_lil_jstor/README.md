@@ -1,9 +1,9 @@
 # My Lil' JSTOR
-### Summary of Time Spent (41 hours total)
+### Summary of Time Spent (45 hours total)
 
 Two things:
-* I started on this exercise before I submitted my application for the position, which is why I'm being extra meticulous and straightforward about how much time I spent. 
-* This is my first time working with Django and I have not yet studied Python, and the times I list below include study time.
+* I started on this exercise before I submitted my application. I will be extra meticulous and straightforward about how much time I spent. 
+* This is my first time working with Django and I have not studied Python. The times I list below include time to study and learn.
 
 ### Setup and Troubleshooting (5 hours)
 * Create a virtualenv on Python 3
@@ -81,6 +81,14 @@ Two things:
 * Add browse link to coloring book pages for ease of navigation
 * Display rating with a combo of gold and gray stars so that there are 5 stars total
 
+
+### Clean-up, refactoring, comments, security vulnerabilities... (4 hours)
+* layout adjustments
+* improve display of Average Rating stars and text
+* refactoring
+* add comments for clarification
+* resolve security vulnerabilities
+* update Readme 
 
 
 
