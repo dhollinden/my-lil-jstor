@@ -1,6 +1,7 @@
 // Please include or add javascript to this file
 import $ from 'jquery';
 
+// toggles visibility of the comment form
 $('#leave-comment-link').on('click', function (event) {
   event.preventDefault();
   const formClass = $('#comment-form').attr('class');
@@ -15,6 +16,7 @@ $('#leave-comment-link').on('click', function (event) {
 });
 
 
+// toggles Likes link text and message, updates discounted price
 $('#like-link').on('click', function (event) {
   event.preventDefault();
   const action = $('#like-link').text().toLowerCase()
@@ -39,8 +41,8 @@ $('#like-link').on('click', function (event) {
 });
 
 
+// generates Likes message based on number of likes and cookie
 function getLikesMarkup(num_likes, book_id) {
-  // get cookie likes_coloring_book_ for book_id
   const cookieVal = getCookie('likes_coloring_book_' + book_id)
   const linkText = cookieVal ? 'Unlike' : 'Like'
 
