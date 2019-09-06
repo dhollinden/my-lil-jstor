@@ -1,12 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import render
+from decimal import Decimal, ROUND_UP
 
 from .services import *
-
 from .models import Comment
 from .models import CommentForm
-
-from decimal import Decimal, ROUND_UP
 
 
 def coloring_books(request, book_id):
@@ -22,8 +20,6 @@ def coloring_books(request, book_id):
     likes_markup = get_likes_markup(request, book['likes'], book_id)
     discounted_price = get_discounted_price(book_id)
     form = CommentForm
-    if discounted_price < 2.50:
-        discounted_price = round(Decimal(2.50), 2)
     context = {
         'book': book,
         'comment_markup': comment_markup,

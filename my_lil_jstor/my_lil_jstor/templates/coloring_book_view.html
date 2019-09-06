@@ -48,7 +48,7 @@
         <br>
         {% endfor %}
     </div>
-    <a id=leave-comment-link href="#">{{ comment_markup.leave_comment_header }}</a>
+    <a id=leave-comment-link href="#">{{ comment_markup.leave_comment_link_text }}</a>
     <div id=comment-form class=visuallyhidden>
         <form action="/coloringbook/{{book.id}}" method="post">
             {% csrf_token %}
