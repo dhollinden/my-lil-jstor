@@ -1,0 +1,4 @@
++ fstream@1.0.12
+updated 1 package and audited 3377 packages in 3.177s
+found 24 vulnerabilities (7 moderate, 17 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
