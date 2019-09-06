@@ -10,7 +10,7 @@ Two things:
 * Install Django
 * Run migration :warning:
   * Error: Symbol not found: _sqlite3_enable_load_extension
-  * Solution
+  * Solution (I spent quite a bit of time on this one :confounded:)
     * brew update
     * brew upgrade python3
     * update Xcode
