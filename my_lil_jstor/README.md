@@ -2,15 +2,17 @@
 ### Summary of Time Spent (45 hours total)
 
 Two things:
-* I started on this exercise before I submitted my application. I will be extra meticulous and straightforward about how much time I spent. 
-* This is my first time working with Django and I have not studied Python. The times I list below include time to study and learn.
+* This is my first experience with Django.
+* I've not studied Python, though a current project at work involves two Python lambdas.
+* Given that I started on this exercise early, I'll be especially transparent about how much time I spent on each task and will include study time. 
 
 ### Setup and Troubleshooting (5 hours)
 * Create a virtualenv on Python 3
 * Install Django
 * Run migration :warning:
   * Error: Symbol not found: _sqlite3_enable_load_extension
-  * Solution (I spent quite a bit of time on this one :confounded:)
+    * this took a long time to troubleshoot :confounded:
+  * Solution 
     * brew update
     * brew upgrade python3
     * update Xcode
@@ -33,21 +35,22 @@ Two things:
 ### Task 2: Browse (3 hours)
 * Learn about Python lists :books:
 * urls.py: add browse/ url
-* services.py: add service: get_coloring_books_in_range(start, end) returns list with all books
-* views.py: add browse view: generate books_list by calling get_coloring_books_in_range(1, 5), then pass it into template context
-* templates: add browse.html template: start with coloring_book_view.html, use {% for book in books_list %} to display all books in books_list
+* services.py: add service that returns multiple books: get_coloring_books_in_range(start, end) 
+* views.py: add browse view that generates a list of books and passes it into template context
+* templates: add browse.html template, use {% for ... in ... %} to display all books in books_list
 * Error: Invalid block tag on line 9: 'endfor', expected 'endblock' :warning:
-  * Solution: disable "Prettier - Code Formatter" extenion that was breaking tags :heavy_check_mark: :confounded:
+  * this took a long time to troubleshoot :confounded:
+* Solution: disable "Prettier - Code Formatter" extenion that was breaking tags :heavy_check_mark: 
 
 ### Task 3: User Comments (12 hours)
-* Learn about database models, forms, and modelforms :books:
+* Learn about Django database models, forms, and modelforms :books:
 * Create database model for comments
 * Create modelform for form fields
 * Handle form POST inside coloring_book view
 * Learn about running migrations :books:
 * Run migration
 * Learn how to view sqlite tables and data, etc. :books:
-* Rating must be optional :books:
+* Learn about optional fields w/regard to database and validator :books:
 * Learn about Django conditionals :books:
 * Display comments on coloring_book page, and rating if one exists
 * Display ratings as stars instead of numbers
@@ -55,42 +58,40 @@ Two things:
 ### Task 4: Likes (13 hours)
 * Learn about AJAX and JQuery :books:
 * Add likes field to coloring book model, run migrations
-* Add Like link to coloring book template
+* Add Like / Unlike link to coloring book template
 * Add eventListener to Like link
 * Add AJAX function to make GET request to /like url with book_id
-* Add like and unlike urls and views
-* Create add_like and subtract_like services
-* Number of likes is returned to AJAX function
-* Cookie is set or deleted
-* Create new function for determining text to display (e.g., Like/Unlike, X others like this)
-* Update page with text 
+* Add like / unlike urls, views and services
+* Return number of Likes and header to set or delete cookie to AJAX function
+* Add new function for determining the appropriate text to display based on number of likes and cookie
+* Update Like / Unlike link with appropriate text
+* Update coloring book view to also display appropriate text for Like / Unlike link
 
 
 ### Task 5: Discounts (2.5 hours)
 * Learn about int, float, rounding and Decimal :books:
 * Create new service: get_discounted_price(book_id)
-* Display discounted price in template
+* Update view and template to display discounted price
 * Call get_discounted_price() when Like/Unlike is clicked, and update displayed price
 
 
 ### Nice-to-haves (3.5 hours)
 * Play with layout, make refinements
-* Toggle visibility of comment form via 'Leave a comment' link
-* Display rating with solid gold stars
-* Calculate and display average rating with stars
-* Add browse link to coloring book pages for ease of navigation
-* Display rating with a combo of gold and gray stars so that there are 5 stars total
+* Toggle visibility of comment form for a cleaner look
+* Use solid gold stars to display rating
+* Add Average Rating to main coloring book info
+* Add gray stars to rating so that there are 5 stars total
+* Add browse link to coloring book page to improve navigation
 
 
-### Clean-up, refactoring, comments, security vulnerabilities... (4 hours)
-* layout adjustments
-* improve display of Average Rating stars and text
-* refactoring
-* add comments for clarification
-* resolve security vulnerabilities
-* update Readme 
+### Final clean-up (4 hours)
+* More layout adjustments
+* Refactor
+* Add comments for clarification
+* Resolve security vulnerabilities
+* Update Readme 
 
-
+# 
 
 
 
