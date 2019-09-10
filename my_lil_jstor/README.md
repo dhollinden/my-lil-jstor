@@ -2,9 +2,8 @@
 ### Summary of Time Spent (45 hours total)
 
 Two things:
-* This is my first experience with Django.
-* I've not studied Python, though a current project at work involves two Python lambdas.
-* Given that I started on this exercise early, I'll be especially transparent about how much time I spent on each task and will include study time. 
+* This is my first experience with Django, and I've not studied Python, though a current work project involves two Python lambdas.
+* I started on this exercise early, so I've been especially diligent about reporting how much time I spent on each task, including study time. 
 
 ### Setup and Troubleshooting (5 hours)
 * Create a virtualenv on Python 3
